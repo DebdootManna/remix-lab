@@ -1,73 +1,45 @@
-# Welcome to your Lovable project
 
-## Project info
+# WebAudio Studio
 
-**URL**: https://lovable.dev/projects/5d9ef17f-f7d5-4132-aea3-c538883853b0
+A browser-based audio editing application that allows users to edit audio files without requiring an account or installation.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Audio Editing**: Trim, cut, and split audio files directly in your browser
+- **Waveform Visualization**: See your audio files visually and make precise edits
+- **8-Band Equalizer**: Fine-tune your audio with a professional-grade 8-band EQ
+- **Vocal Extraction**: Simulate separating vocals from instrumental tracks
 
-**Use Lovable**
+## How to Use
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/5d9ef17f-f7d5-4132-aea3-c538883853b0) and start prompting.
+1. **Upload Audio**: Drag and drop or click to upload your audio file
+2. **Edit**: Use the waveform editor to select regions and apply edits
+3. **Equalize**: Adjust the 8-band equalizer to enhance your sound
+4. **Export**: Download your edited audio file when you're done
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technical Details
 
-**Use your preferred IDE**
+This project is built with:
+- React
+- TypeScript
+- Web Audio API
+- Tailwind CSS
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run this project locally:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Notes
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- This is a client-side application - no data is sent to any server
+- Audio processing happens entirely in your browser
+- Your work is not saved between sessions - download your edited files before closing
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/5d9ef17f-f7d5-4132-aea3-c538883853b0) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)

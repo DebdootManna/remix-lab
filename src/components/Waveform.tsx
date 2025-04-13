@@ -106,22 +106,24 @@ const Waveform: React.FC<WaveformProps> = ({ audioBuffer, onRegionChange }) => {
       const clickTime = (x / rect.width) * audioBuffer.duration;
       
       // When click is closer to selection start, move start; otherwise move end
-      if (Math.abs(clickTime - selectionStart) < Math.abs(clickTime - selectionEnd)) {
+      const distToStart = Math.abs(clickTime - selectionStart);
+      const distToEnd = Math.abs(clickTime - selectionEnd);
+      
+      if (distToStart < distToEnd) {
         setSelectionStart(clickTime);
       } else {
         setSelectionEnd(clickTime);
       }
       
-      // Ensure start is always before end
-      if (selectionStart > selectionEnd) {
-        const temp = selectionStart;
-        setSelectionStart(selectionEnd);
-        setSelectionEnd(temp);
-      }
-      
-      if (onRegionChange) {
-        onRegionChange(selectionStart, selectionEnd);
-      }
+      // Need to call this after state update
+      setTimeout(() => {
+        if (onRegionChange) {
+          onRegionChange(
+            Math.min(selectionStart, selectionEnd), 
+            Math.max(selectionStart, selectionEnd)
+          );
+        }
+      }, 0);
     };
 
     canvas.addEventListener('click', handleClick);
@@ -191,7 +193,7 @@ const Waveform: React.FC<WaveformProps> = ({ audioBuffer, onRegionChange }) => {
 
   return (
     <div className="w-full">
-      <div className="waveform-container">
+      <div className="waveform-container h-32 bg-slate-100 dark:bg-slate-900 rounded-md mb-2">
         <canvas 
           ref={canvasRef} 
           className="w-full h-full"
@@ -205,7 +207,12 @@ const Waveform: React.FC<WaveformProps> = ({ audioBuffer, onRegionChange }) => {
           <Button 
             variant="outline" 
             size="icon" 
-            onClick={() => setCurrentTime(selectionStart)}
+            onClick={() => {
+              setCurrentTime(selectionStart);
+              if (onRegionChange) {
+                onRegionChange(selectionStart, selectionEnd);
+              }
+            }}
           >
             <SkipBack size={16} />
           </Button>
@@ -219,7 +226,12 @@ const Waveform: React.FC<WaveformProps> = ({ audioBuffer, onRegionChange }) => {
           <Button 
             variant="outline" 
             size="icon" 
-            onClick={() => setCurrentTime(selectionEnd)}
+            onClick={() => {
+              setCurrentTime(selectionEnd);
+              if (onRegionChange) {
+                onRegionChange(selectionStart, selectionEnd);
+              }
+            }}
           >
             <SkipForward size={16} />
           </Button>

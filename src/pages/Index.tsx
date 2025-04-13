@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import AudioDropZone from '@/components/AudioDropZone';
 import Waveform from '@/components/Waveform';
 import Equalizer from '@/components/Equalizer';
@@ -18,6 +18,12 @@ const Index = () => {
   const sourceNodeRef = useRef<AudioBufferSourceNode | null>(null);
   
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (audioBuffer && !audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+  }, [audioBuffer]);
 
   const handleAudioLoaded = (buffer: AudioBuffer, file: File) => {
     setAudioBuffer(buffer);
@@ -45,6 +51,13 @@ const Index = () => {
     setAudioBuffer(trimmedBuffer);
     setSelectionStart(0);
     setSelectionEnd(trimmedBuffer.duration);
+    
+    // Reset any active playback
+    if (sourceNodeRef.current) {
+      sourceNodeRef.current.stop();
+      sourceNodeRef.current = null;
+    }
+    setIsPlaying(false);
     
     toast({
       title: "Audio trimmed",
