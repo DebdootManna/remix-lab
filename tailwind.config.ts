@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,15 +53,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				studio: {
+					background: '#1A1A1A',
+					foreground: '#FFFFFF',
+					primary: '#9b87f5',
+					secondary: '#7E69AB',
+					accent: '#1EAEDB',
+					muted: '#333333',
+					border: '#444444',
 				}
 			},
 			borderRadius: {
@@ -84,11 +84,22 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-soft': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				},
+				'waveform-animation': {
+					'0%': { transform: 'scaleY(0.8)' },
+					'50%': { transform: 'scaleY(1.2)' },
+					'100%': { transform: 'scaleY(0.8)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-soft': 'pulse-soft 2s infinite ease-in-out',
+				'waveform': 'waveform-animation 1.2s infinite ease-in-out'
 			}
 		}
 	},
