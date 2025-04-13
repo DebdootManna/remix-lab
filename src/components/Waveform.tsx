@@ -60,8 +60,9 @@ const Waveform: React.FC<WaveformProps> = ({ audioBuffer, onRegionChange }) => {
       ctx.beginPath();
       
       for (let i = 0; i < width; i++) {
-        const min = 1.0;
-        const max = -1.0;
+        // Changed from const to let since these values will be reassigned
+        let min = 1.0;
+        let max = -1.0;
 
         for (let j = 0; j < step; j++) {
           const datum = data[(i * step) + j];
